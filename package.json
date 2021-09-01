@@ -2,9 +2,8 @@
     "name": "taskmanager56",
     "private": true,
     "engines": {
-        "node": "14.x",
-        "npm": "6.x",
-        "yarn": "1.x"
+        "node": "10.19",
+        "npm": "7.21"
     },
     "scripts": {
         "dev": "npm run development",
@@ -18,7 +17,7 @@
     },
     "devDependencies": {
         "axios": "^0.21",
-        "laravel-mix": "^6.0.6",
+        "laravel-mix": "^6.0.29",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14"
     }
