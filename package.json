@@ -1,13 +1,11 @@
 {
-    "name": "myapp",
-    "description": "myapp",
-    "version": "1.0.0",
+    "name": "taskmanager56",
+    "private": true,
     "engines": {
         "node": "14.x",
         "npm": "6.x",
         "yarn": "1.x"
     },
-    "private": true,
     "scripts": {
         "dev": "npm run development",
         "development": "mix",
