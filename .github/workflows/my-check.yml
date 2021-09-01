@@ -1,0 +1,31 @@
+name: php-project-lvl4
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Setup PHP with composer v2
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+          tools: composer:v2
+
+
+      - name: Git clone my repository
+        uses: actions/checkout@v1
+
+      - name: Run a multi-line script
+        run: |
+          ls
+          php --version
+          composer --version
+          make setup
+          make lint
+          make test
