@@ -139,6 +139,10 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'status' => [
+            'required' => 'Это обязательное поле',
+            'unique' => 'Статус с таким именем уже существует'
+        ]
     ],
 
     /*
