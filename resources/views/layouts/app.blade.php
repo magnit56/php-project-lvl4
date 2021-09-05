@@ -6,6 +6,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-param" content="_token" />
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -34,16 +35,13 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link " href="https://php-l4-task-manager.herokuapp.com/tasks">
-                                Задачи                            </a>
+                            <a class="nav-link" href="/tasks">Задачи</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="https://php-l4-task-manager.herokuapp.com/task_statuses">
-                                Статусы                            </a>
+                            <a class="nav-link" href="/task_statuses">Статусы</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="https://php-l4-task-manager.herokuapp.com/labels">
-                                Метки                            </a>
+                            <a class="nav-link " href="/labels">Метки</a>
                         </li>
                     </ul>
 
@@ -86,7 +84,8 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="container py-4">
+            @include('flash::message')
             @yield('content')
         </main>
     </div>
