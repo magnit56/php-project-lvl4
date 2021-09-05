@@ -29,5 +29,8 @@
     },
     "optionalDependencies": {
         "fsevents": "^2.3.2"
+    },
+    "dependencies": {
+        "@rails/ujs": "^6.1.4-1"
     }
 }
