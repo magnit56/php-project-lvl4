@@ -6,16 +6,12 @@
         {{ csrf_field() }}
         <div class="form-group">
             <label for="name">Имя</label>
-            <input class="form-control" name="name" type="text" id="name">
+            <input class="form-control @error('name') is-invalid @enderror" name="name" type="text" value="{{ old('name') ?? $taskStatus->name }}" id="name">
 
             @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
+                @foreach ($errors->all() as $error)
+                    <div class="invalid-feedback">{{ $error }}</div>
+                @endforeach
             @endif
         </div>
         <input class="btn btn-primary" type="submit" value="Создать">
