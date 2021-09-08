@@ -35,13 +35,13 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="/tasks">Задачи</a>
+                            <a class="nav-link {{ request()->is('tasks') ? 'active' : '' }}" href="/tasks">Задачи</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/task_statuses">Статусы</a>
+                            <a class="nav-link {{ request()->is('task_statuses') ? 'active' : '' }}" href="/task_statuses">Статусы</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="/labels">Метки</a>
+                            <a class="nav-link {{ request()->is('labels') ? 'active' : '' }}" href="/labels">Метки</a>
                         </li>
                     </ul>
 
