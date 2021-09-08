@@ -16,6 +16,13 @@
         "postinstall": "npm run prod"
     },
     "devDependencies": {
+    },
+    "optionalDependencies": {
+        "fsevents": "^2.3.2"
+    },
+    "dependencies": {
+        "laravel-mix": "^6.0.29",
+        "@rails/ujs": "^6.1.4-1",
         "axios": "^0.21",
         "bootstrap": "^4.6.0",
         "jquery": "^3.6",
@@ -25,12 +32,5 @@
         "resolve-url-loader": "^4.0.0",
         "sass": "^1.32.11",
         "sass-loader": "^11.0.1"
-    },
-    "optionalDependencies": {
-        "fsevents": "^2.3.2"
-    },
-    "dependencies": {
-        "laravel-mix": "^6.0.29",
-        "@rails/ujs": "^6.1.4-1"
     }
 }
