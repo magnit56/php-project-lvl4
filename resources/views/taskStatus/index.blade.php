@@ -3,20 +3,17 @@
 @section('content')
     <h1 class="mb-5">Статусы</h1>
 
-    @if(\Illuminate\Support\Facades\Auth::check())
+    @can('create', App\Models\TaskStatus::class)
         <a href="/task_statuses/create" class="btn btn-primary">Создать статус</a>
-    @endif
+    @endcan
 
     <table class="table mt-2">
-
         <thead>
         <tr>
             <th>ID</th>
             <th>Имя</th>
             <th>Дата создания</th>
-            @if(\Illuminate\Support\Facades\Auth::check())
-                <th>Действия</th>
-            @endif
+            <th>Действия</th>
         </tr>
         </thead>
 
@@ -26,12 +23,16 @@
                 <td>{{ $taskStatus->id }}</td>
                 <td>{{ $taskStatus->name }}</td>
                 <td>{{ \Carbon\Carbon::parse($taskStatus->created_at)->format('d.m.Y') }}</td>
-                @if(\Illuminate\Support\Facades\Auth::check())
-                    <td>
+
+                <td>
+                    @can('delete', $taskStatus)
                         <a class="text-danger" href="/task_statuses/{{ $taskStatus->id }}/" data-confirm="Вы уверены?" data-method="delete" rel="nofollow">Удалить</a>
+                    @endcan
+
+                    @can('update', $taskStatus)
                         <a href="/task_statuses/{{ $taskStatus->id }}/edit">Изменить</a>
-                    </td>
-                @endif
+                    @endcan
+                </td>
             </tr>
         @endforeach
         </tbody>
