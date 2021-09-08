@@ -19,7 +19,7 @@ class Tasks extends Migration
             $table->string('description');
             $table->bigInteger('status_id');
             $table->bigInteger('created_by_id');
-            $table->bigInteger('assigned_to_id');
+            $table->bigInteger('assigned_to_id')->nullable();
             $table->timestamps();
         });
     }
