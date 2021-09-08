@@ -20,8 +20,6 @@ Route::get('/', function () {
 
 Route::get('task_statuses', [TaskStatusController::class, 'index'])
     ->name('taskStatus.index');
-//Route::get('task_statuses/{id}', [TaskStatusController::class, 'show'])
-//    ->name('taskStatus.show');
 Route::get('task_statuses/create', [TaskStatusController::class, 'create'])
     ->middleware('auth')
     ->name('taskStatus.create');
@@ -37,8 +35,9 @@ Route::get('task_statuses/{id}/edit', [TaskStatusController::class, 'edit'])
 Route::patch('task_statuses/{id}', [TaskStatusController::class, 'update'])
     ->middleware('auth')
     ->name('taskStatus.update');
-
-
+Route::get('task_statuses/{id}', [TaskStatusController::class, 'show'])
+    ->middleware('auth')
+    ->name('taskStatus.show');
 
 
 Auth::routes();
