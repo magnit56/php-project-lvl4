@@ -4,7 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\TaskStatus;
 use App\Models\User;
-use Database\Seeders\TaskStatusSeeder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -13,12 +13,13 @@ class TaskStatusTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected Model $status;
+
     protected function setUp(): void
     {
         parent::setUp();
-        $this->seed();
-        $this->seed(TaskStatusSeeder::class);
-        $user = User::factory()->make();
+        $user = User::factory()->create();
+        $this->status = TaskStatus::factory()->create();
         $this->actingAs($user);
     }
 
@@ -26,6 +27,12 @@ class TaskStatusTest extends TestCase
     {
         $response = $this->get(route('taskStatus.index'));
         $response->assertOk();
+    }
+
+    public function testShow(): void
+    {
+        $response = $this->get(route('taskStatus.show', ['id' => $this->status->id]));
+        $response->assertStatus(403);
     }
 
     public function testCreate(): void
@@ -45,17 +52,25 @@ class TaskStatusTest extends TestCase
 
     public function testEdit(): void
     {
-        $response = $this->get(route('taskStatus.edit', ['id' => 1]));
+        $response = $this->get(route('taskStatus.edit', ['id' => $this->status->id]));
         $response->assertStatus(200);
     }
 
     public function testUpdate(): void
     {
-        $oldTaskStatus = TaskStatus::findOrFail(1)->toArray();
+        $id = $this->status->id;
+        $oldTaskStatus = $this->status->toArray();
         $newTaskStatus = TaskStatus::factory()->make()->toArray();
-        $response = $this->patch(route('taskStatus.update', ['id' => 1]), $newTaskStatus);
+        $response = $this->patch(route('taskStatus.update', ['id' => $id]), $newTaskStatus);
         $response->assertStatus(302);
         $this->assertDatabaseHas('task_statuses', $newTaskStatus);
         $this->assertDatabaseMissing('task_statuses', $oldTaskStatus);
+    }
+
+    public function testDestroy(): void
+    {
+        $response = $this->delete(route('taskStatus.destroy', ['id' => $this->status->id]));
+        $response->assertStatus(302);
+        $this->assertDatabaseMissing('task_statuses', $this->status->toArray());
     }
 }
