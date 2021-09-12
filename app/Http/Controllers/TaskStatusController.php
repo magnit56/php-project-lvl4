@@ -63,12 +63,14 @@ class TaskStatusController extends Controller
 
     public function destroy(Request $request, $id)
     {
-        // Добавить то, что удалять статусы, связанные с задачами нельзя!
         $taskStatus = TaskStatus::findOrFail($id);
         if (optional($request->user())->cannot('delete', $taskStatus)) {
             abort(403);
         }
-
+        if ($taskStatus->tasks->count() > 0) {
+            flash(trans('flash.status.delete_failed'))->error();
+            return redirect()->route('taskStatus.index');
+        }
         $taskStatus->delete();
         flash(trans('flash.status.deleted'))->success();
         return redirect()->route('taskStatus.index');
