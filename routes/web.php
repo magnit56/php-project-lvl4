@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskStatusController;
@@ -16,7 +17,8 @@ use App\Http\Controllers\TaskStatusController;
 
 Route::get('/', function () {
     return view('index');
-});
+})
+    ->name('index');
 
 Route::get('task_statuses', [TaskStatusController::class, 'index'])
     ->name('taskStatus.index');
@@ -38,6 +40,27 @@ Route::patch('task_statuses/{id}', [TaskStatusController::class, 'update'])
 Route::get('task_statuses/{id}', [TaskStatusController::class, 'show'])
     ->middleware('auth')
     ->name('taskStatus.show');
+
+Route::get('tasks', [TaskController::class, 'index'])
+    ->name('task.index');
+Route::get('tasks/create', [TaskController::class, 'create'])
+    ->middleware('auth')
+    ->name('task.create');
+Route::post('tasks', [TaskController::class, 'store'])
+    ->middleware('auth')
+    ->name('task.store');
+Route::delete('tasks/{id}', [TaskController::class, 'destroy'])
+    ->middleware('auth')
+    ->name('task.destroy');
+Route::get('tasks/{id}/edit', [TaskController::class, 'edit'])
+    ->middleware('auth')
+    ->name('task.edit');
+Route::patch('tasks/{id}', [TaskController::class, 'update'])
+    ->middleware('auth')
+    ->name('task.update');
+Route::get('tasks/{id}', [TaskController::class, 'show'])
+    ->middleware('auth')
+    ->name('task.show');
 
 
 Auth::routes();
