@@ -106,7 +106,7 @@ class TaskController extends Controller
             'assigned_to_id' => $request->input('assigned_to_id'),
         ];
         $validator = Validator::make($data, [
-            'name' => 'required|unique:App\Models\Task,name' . $task->id,
+            'name' => 'required|unique:App\Models\Task,name,' . $task->id,
             'description' => '',
             'status_id' => 'required|exists:App\Models\TaskStatus,id',
             'assigned_to_id' => 'nullable|exists:App\Models\User,id',
