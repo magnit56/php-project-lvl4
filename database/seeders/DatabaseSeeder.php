@@ -19,5 +19,6 @@ class DatabaseSeeder extends Seeder
                 'email' => 'magnit56@gmail.com',
                 'password' => '$2y$10$f.IniLL73GzRXe7BIxkEyOj8jOJMyJwy1zYGt2BV7QtOOjbXDRpea',
             ]);
+        User::factory()->count(10)->create();
     }
 }
