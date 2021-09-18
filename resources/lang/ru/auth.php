@@ -13,8 +13,20 @@ return [
     |
     */
 
-    'failed' => 'These credentials do not match our records.',
+    'failed' => 'Введите правильные имя пользователя и пароль',
     'password' => 'The provided password is incorrect.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
-
+    'custom' => [
+        'login' => 'Логин',
+        'email' => 'Email',
+        'password' => 'Пароль',
+        'remember' => 'Запомнить меня',
+        'forgot' => 'Забыли пароль?',
+        'resetPassword' => 'Сброс пароля',
+        'sendResetPassword' => 'Сбросить пароль',
+        'register' => 'Регистрация',
+        'name' => 'Имя',
+        'confirm' => 'Подтверждение',
+        'sendRegister' => 'Зарегистрировать',
+    ],
 ];
