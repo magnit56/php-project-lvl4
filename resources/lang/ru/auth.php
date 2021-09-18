@@ -17,7 +17,8 @@ return [
     'password' => 'The provided password is incorrect.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
     'custom' => [
-        'login' => 'Логин',
+        'login' => 'Вход',
+        'sendLogin' => 'Войти',
         'email' => 'Email',
         'password' => 'Пароль',
         'remember' => 'Запомнить меня',
