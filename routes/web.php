@@ -18,8 +18,7 @@ use App\Http\Controllers\TaskStatusController;
 
 Route::get('/', function () {
     return view('index');
-})
-    ->name('index');
+});
 
 Route::get('task_statuses', [TaskStatusController::class, 'index'])
     ->name('taskStatus.index');
