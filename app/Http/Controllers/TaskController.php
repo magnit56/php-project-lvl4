@@ -8,15 +8,19 @@ use App\Models\TaskStatus;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class TaskController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $tasksPerPage = 10;
-        $tasks = Task::paginate($tasksPerPage);
+        $tasks = QueryBuilder::for(Task::class)
+            ->allowedFilters('status_id', 'created_by_id', 'assigned_to_id')
+            ->paginate($tasksPerPage);
         $users = User::all();
         $taskStatuses = TaskStatus::all();
+        session()->flashInput($request->input());
         return view('task.index', compact('tasks', 'users', 'taskStatuses'));
     }
 

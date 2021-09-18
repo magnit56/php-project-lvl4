@@ -7,21 +7,21 @@
         <div>
             <form method="GET" action="/tasks" accept-charset="UTF-8" class="form-inline">
                 <select class="form-control mr-2" name="filter[status_id]">
-                    <option selected="selected" value="">Статус</option>
+                    <option @empty(old('filter.status_id')) selected="selected" @endempty value="">Статус</option>
                     @foreach($taskStatuses as $taskStatus)
-                        <option value="{{ $taskStatus->id }}">{{ $taskStatus->name }}</option>
+                        <option @if(old('filter.status_id') == $taskStatus->id) selected="selected" @endif value="{{ $taskStatus->id }}">{{ $taskStatus->name }}</option>
                     @endforeach
                 </select>
                 <select class="form-control mr-2" name="filter[created_by_id]">
-                    <option selected="selected" value="">Автор</option>
+                    <option @empty(old('filter.created_by_id')) selected="selected" @endempty value="">Автор</option>
                     @foreach($users as $user)
-                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                        <option @if(old('filter.created_by_id') == $user->id) selected="selected" @endif value="{{ $user->id }}">{{ $user->name }}</option>
                     @endforeach
                 </select>
                 <select class="form-control mr-2" name="filter[assigned_to_id]">
-                    <option selected="selected" value="">Исполнитель</option>
+                    <option @empty(old('filter.assigned_to_id')) selected="selected" @endempty value="">Исполнитель</option>
                     @foreach($users as $user)
-                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                        <option @if(old('filter.assigned_to_id') == $user->id) selected="selected" @endif value="{{ $user->id }}">{{ $user->name }}</option>
                     @endforeach
                 </select>
                 <input class="btn btn-outline-primary mr-2" type="submit" value="Применить">
