@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Label;
 use App\Models\Task;
 use App\Models\TaskStatus;
 use App\Models\User;
@@ -18,6 +19,9 @@ class TaskTest extends TestCase
     protected Model $assignee;
     protected Model $status;
     protected Model $task;
+    protected Model $firstLabel;
+    protected Model $secondLabel;
+    protected Model $thirdLabel;
 
     protected function setUp(): void
     {
@@ -33,6 +37,9 @@ class TaskTest extends TestCase
             ]
         );
         $this->actingAs($this->creator);
+        $this->firstLabel = Label::factory()->create();
+        $this->secondLabel = Label::factory()->create();
+        $this->thirdLabel = Label::factory()->create();
     }
 
     public function testIndex(): void
@@ -63,9 +70,15 @@ class TaskTest extends TestCase
             ]
         )->toArray();
         $data = Arr::only($factoryData, ['name', 'description', 'status_id', 'created_by_id', 'assigned_to_id']);
-        $response = $this->post(route('task.store'), $data);
+        $response = $this->post(route('task.store'), array_merge($data, ['labels' => [$this->firstLabel->id, $this->secondLabel->id]]));
         $response->assertStatus(302);
         $this->assertDatabaseHas('tasks', $data);
+        $this->assertDatabaseHas('label_task',
+            ['label_id' => $this->firstLabel->id]
+        );
+        $this->assertDatabaseHas('label_task',
+            ['label_id' => $this->secondLabel->id]
+        );
     }
 
     public function testEdit(): void
@@ -84,10 +97,20 @@ class TaskTest extends TestCase
                 'assigned_to_id' => $this->assignee->id,
             ]
         )->toArray();
-        $response = $this->patch(route('task.update', ['id' => $this->status->id]), $newTask);
+        $response = $this->patch(route('task.update', ['id' => $this->status->id]), array_merge($newTask, ['labels' => [$this->secondLabel->id, $this->thirdLabel->id]]));
         $response->assertStatus(302);
         $this->assertDatabaseHas('tasks', $newTask);
         $this->assertDatabaseMissing('tasks', $oldTask);
+
+        $this->assertDatabaseMissing('label_task',
+            ['label_id' => $this->firstLabel->id]
+        );
+        $this->assertDatabaseHas('label_task',
+            ['label_id' => $this->secondLabel->id]
+        );
+        $this->assertDatabaseHas('label_task',
+            ['label_id' => $this->thirdLabel->id]
+        );
     }
 
     public function testDestroy(): void
