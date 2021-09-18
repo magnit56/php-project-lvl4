@@ -47,16 +47,22 @@
             @enderror
         </div>
 
-{{--        <div class="form-group">--}}
-{{--            <label for="labels">Метки</label>--}}
-{{--            <select class="form-control" multiple="" name="labels[]">--}}
-{{--                <option value=""></option>--}}
-{{--                @foreach($labels as $label)--}}
-{{--                    <option value="{{ $label->id }}">{{ $label->name }}</option>--}}
-{{--                @endforeach--}}
-{{--            </select>--}}
-{{--        </div>--}}
+        <div class="form-group">
+            <label for="labels">Метки</label>
+            <select class="form-control" multiple="" name="labels[]">
+                <option value=""></option>
+                @foreach($labels as $label)
+                    <option @if(collect(old('labels'))->contains($label->id)) selected="selected" @endif value="{{ $label->id }}">{{ $label->name }}</option>
+                @endforeach
+            </select>
 
+            @error('labels')
+            <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+            @error('labels.*')
+            <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
 
         <input class="btn btn-primary" type="submit" value="Создать">
     </form>

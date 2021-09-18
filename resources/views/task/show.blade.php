@@ -6,9 +6,13 @@
     <p>Имя: {{ $task->name }}</p>
     <p>Статус: {{ $task->status->name }}</p>
     <p>Описание: {{ $task->description }}</p>
+    @isset($task->labels)
     <p>Метки:</p>
-{{--    <ul>--}}
-{{--        <li>Метка</li>--}}
-{{--    </ul>--}}
+    @foreach($task->labels as $label)
+    <ul>
+        <li>{{ $label->name }}</li>
+    </ul>
+    @endforeach
+    @endisset
 @endsection
 

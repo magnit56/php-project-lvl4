@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LabelController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -62,6 +63,26 @@ Route::get('tasks/{id}', [TaskController::class, 'show'])
     ->middleware('auth')
     ->name('task.show');
 
+Route::get('labels', [LabelController::class, 'index'])
+    ->name('label.index');
+Route::get('labels/create', [LabelController::class, 'create'])
+    ->middleware('auth')
+    ->name('label.create');
+Route::post('labels', [LabelController::class, 'store'])
+    ->middleware('auth')
+    ->name('label.store');
+Route::delete('labels/{id}', [LabelController::class, 'destroy'])
+    ->middleware('auth')
+    ->name('label.destroy');
+Route::get('labels/{id}/edit', [LabelController::class, 'edit'])
+    ->middleware('auth')
+    ->name('label.edit');
+Route::patch('labels/{id}', [LabelController::class, 'update'])
+    ->middleware('auth')
+    ->name('label.update');
+Route::get('labels/{id}', [LabelController::class, 'show'])
+    ->middleware('auth')
+    ->name('label.show');
 
 Auth::routes();
 
