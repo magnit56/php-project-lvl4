@@ -2,8 +2,8 @@
     "name": "taskmanager56",
     "private": true,
     "engines": {
-        "node": "15.14",
-        "npm": "7.21"
+        "node": "14.*",
+        "npm": "6.*"
     },
     "scripts": {
         "dev": "npm run development",
