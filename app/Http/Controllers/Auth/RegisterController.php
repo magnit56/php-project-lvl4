@@ -66,7 +66,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        Mail::to($data['email'])->queue(new NewUserNotification());
+//        Mail::to($data['email'])->queue(new NewUserNotification());
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
