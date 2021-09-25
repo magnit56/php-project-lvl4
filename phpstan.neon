@@ -1,0 +1,27 @@
+parameters:
+  level: 8
+  paths:
+    - app
+    - routes
+    - tests
+
+  checkMissingIterableValueType: false
+
+  excludePaths:
+    - routes/console.php
+    - app/Http/Middleware/Authenticate.php
+    - app/Http/Middleware/RedirectIfAuthenticated.php
+    - app/Helpers/HtmlHelper.php
+    - routes/channels.php
+    - app/Providers/RouteServiceProvider.php
+
+  reportUnmatchedIgnoredErrors: false
+
+  ignoreErrors:
+   - '#Parameter \#1 \$message of function flash expects string\|null, array\|string\|null given.#'
+   - '#Cannot call method [\w]+\(\) on App\\Models\\User\|null.#'
+   - '#Dynamic call to static method#'
+   # TODO: remove this when larastan release new version
+   - '#<Illuminate\\Database\\Eloquent\\Model>\|Illuminate\\Database\\Eloquent\\Model\::\$id#'
+   - '#<Illuminate\\Database\\Eloquent\\Model>\|Illuminate\\Database\\Eloquent\\Model\::\$createdBy#'
+   - '#Tests\\Feature\\[\w]+\::\$user \(App\\Models\\User\) does not accept#'
