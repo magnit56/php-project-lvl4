@@ -19,8 +19,8 @@ class TaskStatusTest extends TestCase
     {
         parent::setUp();
         $user = User::factory()->create();
-        $this->status = TaskStatus::factory()->create();
-        $this->actingAs($user);
+        $this->status = TaskStatus::factory()->create(); // @phpstan-ignore-line
+        $this->actingAs($user); // @phpstan-ignore-line
     }
 
     public function testIndex(): void
@@ -31,7 +31,7 @@ class TaskStatusTest extends TestCase
 
     public function testShow(): void
     {
-        $response = $this->get(route('taskStatus.show', ['id' => $this->status->id]));
+        $response = $this->get(route('taskStatus.show', ['id' => $this->status->id])); // @phpstan-ignore-line
         $response->assertStatus(403);
     }
 
@@ -52,13 +52,13 @@ class TaskStatusTest extends TestCase
 
     public function testEdit(): void
     {
-        $response = $this->get(route('taskStatus.edit', ['id' => $this->status->id]));
+        $response = $this->get(route('taskStatus.edit', ['id' => $this->status->id])); // @phpstan-ignore-line
         $response->assertStatus(200);
     }
 
     public function testUpdate(): void
     {
-        $id = $this->status->id;
+        $id = $this->status->id; // @phpstan-ignore-line
         $oldTaskStatus = $this->status->toArray();
         $newTaskStatus = TaskStatus::factory()->make()->toArray();
         $response = $this->patch(route('taskStatus.update', ['id' => $id]), $newTaskStatus);
@@ -69,7 +69,7 @@ class TaskStatusTest extends TestCase
 
     public function testDestroy(): void
     {
-        $response = $this->delete(route('taskStatus.destroy', ['id' => $this->status->id]));
+        $response = $this->delete(route('taskStatus.destroy', ['id' => $this->status->id])); // @phpstan-ignore-line
         $response->assertStatus(302);
         $this->assertDatabaseMissing('task_statuses', $this->status->toArray());
     }

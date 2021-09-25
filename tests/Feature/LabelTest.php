@@ -19,9 +19,9 @@ class LabelTest extends TestCase
     {
         parent::setUp();
         $user = User::factory()->create();
-        $this->label = Label::factory()->create();
+        $this->label = Label::factory()->create(); // @phpstan-ignore-line
         Label::factory()->create();
-        $this->actingAs($user);
+        $this->actingAs($user); // @phpstan-ignore-line
     }
 
     public function testIndex(): void
@@ -32,7 +32,7 @@ class LabelTest extends TestCase
 
     public function testShow(): void
     {
-        $response = $this->get(route('label.show', ['id' => $this->label->id]));
+        $response = $this->get(route('label.show', ['id' => $this->label->id])); // @phpstan-ignore-line
         $response->assertStatus(403);
     }
 
@@ -53,13 +53,13 @@ class LabelTest extends TestCase
 
     public function testEdit(): void
     {
-        $response = $this->get(route('label.edit', ['id' => $this->label->id]));
+        $response = $this->get(route('label.edit', ['id' => $this->label->id])); // @phpstan-ignore-line
         $response->assertStatus(200);
     }
 
     public function testUpdate(): void
     {
-        $id = $this->label->id;
+        $id = $this->label->id; // @phpstan-ignore-line
         $oldLabel = $this->label->toArray();
         $newLabel = Label::factory()->make()->toArray();
         $response = $this->patch(route('label.update', ['id' => $id]), $newLabel);
@@ -70,7 +70,7 @@ class LabelTest extends TestCase
 
     public function testDestroy(): void
     {
-        $response = $this->delete(route('label.destroy', ['id' => $this->label->id]));
+        $response = $this->delete(route('label.destroy', ['id' => $this->label->id])); // @phpstan-ignore-line
         $response->assertStatus(302);
         $this->assertDatabaseMissing('labels', $this->label->toArray());
     }

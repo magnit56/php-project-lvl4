@@ -23,6 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // @phpstan-ignore-next-line
         return view('index');
     }
 }
