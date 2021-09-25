@@ -65,6 +65,6 @@
             @enderror
         </div>
 
-        <input class="btn btn-primary" type="submit" value="Создать">
+        <input class="btn btn-primary" type="submit" value="Обновить">
     </form>
 @endsection
