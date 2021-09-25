@@ -8,6 +8,7 @@ use App\Models\TaskStatus;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class TaskController extends Controller
@@ -16,7 +17,11 @@ class TaskController extends Controller
     {
         $tasksPerPage = 10;
         $tasks = QueryBuilder::for(Task::class)
-            ->allowedFilters('status_id', 'created_by_id', 'assigned_to_id')
+            ->allowedFilters(
+                AllowedFilter::exact('status_id'),
+                AllowedFilter::exact('created_by_id'),
+                AllowedFilter::exact('assigned_to_id'),
+            )
             ->paginate($tasksPerPage);
         $users = User::all();
         $taskStatuses = TaskStatus::all();
