@@ -73,11 +73,11 @@ class TaskTest extends TestCase
         $response = $this->post(route('task.store'), array_merge($data, ['labels' => [$this->firstLabel->id, $this->secondLabel->id]]));
         $response->assertStatus(302);
         $this->assertDatabaseHas('tasks', $data);
-        $this->assertDatabaseHas('label_task',
-            ['label_id' => $this->firstLabel->id]
+        $this->assertDatabaseHas(
+            'label_task', ['label_id' => $this->firstLabel->id]
         );
-        $this->assertDatabaseHas('label_task',
-            ['label_id' => $this->secondLabel->id]
+        $this->assertDatabaseHas(
+            'label_task', ['label_id' => $this->secondLabel->id]
         );
     }
 
@@ -102,14 +102,14 @@ class TaskTest extends TestCase
         $this->assertDatabaseHas('tasks', $newTask);
         $this->assertDatabaseMissing('tasks', $oldTask);
 
-        $this->assertDatabaseMissing('label_task',
-            ['label_id' => $this->firstLabel->id]
+        $this->assertDatabaseMissing(
+            'label_task', ['label_id' => $this->firstLabel->id]
         );
-        $this->assertDatabaseHas('label_task',
-            ['label_id' => $this->secondLabel->id]
+        $this->assertDatabaseHas(
+            'label_task', ['label_id' => $this->secondLabel->id]
         );
-        $this->assertDatabaseHas('label_task',
-            ['label_id' => $this->thirdLabel->id]
+        $this->assertDatabaseHas(
+            'label_task', ['label_id' => $this->thirdLabel->id]
         );
     }
 
