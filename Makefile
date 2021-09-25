@@ -39,3 +39,6 @@ lint:
 
 lint-fix:
 	composer phpcbf
+
+stan:
+	./vendor/bin/phpstan analyse
