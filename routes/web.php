@@ -5,6 +5,7 @@ use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskStatusController;
+use Illuminate\Contracts\View\View;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,7 @@ use App\Http\Controllers\TaskStatusController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function (): View {
     return view('index');
 });
 

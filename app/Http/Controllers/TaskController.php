@@ -84,9 +84,9 @@ class TaskController extends Controller
         $task->created_by_id = $request->user()->id; // @phpstan-ignore-line
         $task->save();
 
-        if (!empty($data['labels'])) {
+        if (!empty($data['labels'])) { // @phpstan-ignore-line
             $labels = Label::find(array_filter($data['labels'])); // @phpstan-ignore-line
-            $task->labels()->sync($labels);
+            $task->labels()->sync($labels); // @phpstan-ignore-line
         }
 
         flash(trans('flash.task.created'))->success(); // @phpstan-ignore-line
@@ -152,9 +152,9 @@ class TaskController extends Controller
         $task->fill($data);
         $task->save();
 
-        if (!empty($data['labels'])) {
+        if (!empty($data['labels'])) { // @phpstan-ignore-line
             $labels = Label::find(array_filter($data['labels'])); // @phpstan-ignore-line
-            $task->labels()->sync($labels);
+            $task->labels()->sync($labels); // @phpstan-ignore-line
         }
 
         flash(trans('flash.task.updated'))->success(); // @phpstan-ignore-line
