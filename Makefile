@@ -7,9 +7,14 @@ setup:
 	php artisan key:gen --ansi
 	touch database/database.sqlite
 	php artisan migrate
-	php artisan db:seed
 	npm i --no-optional
 	npm run dev
+
+seed:
+	php artisan db:seed
+	php artisan db:seed TaskStatusSeeder
+	php artisan db:seed LabelSeeder
+	php artisan db:seed TaskSeeder
 
 watch:
 	npm run watch
