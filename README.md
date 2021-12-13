@@ -9,3 +9,10 @@
 
 ### Test Coverage:
 <a href="https://codeclimate.com/github/magnit56/php-project-lvl4/test_coverage"><img src="https://api.codeclimate.com/v1/badges/6e96902f6f3fea2d21b2/test_coverage" /></a>
+
+<h1>Установка</h1>
+- Склонировать репозиторий на свой компьютер<br>
+- В корне папки данного репозитория <code>make setup</code> для установки зависимостей<br>
+- В корне папки данного репозитория <code>make seed</code> для заполнения базы данных случайными значениями<br>
+- В корне папки данного репозитория <code>make start</code> для запуска веб-сервера PHP (порт будет указан в логах)<br>
+- В корне папки данного репозитория <code>make test</code> для запуска тестов<br>
